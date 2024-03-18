@@ -1,0 +1,11 @@
+version: '3'
+services:
+  mysql-db:
+    image: mysql
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: bidemo
+    volumes:
+      - "./bidemo.sql:/docker-entrypoint-initdb.d/init.sql"
