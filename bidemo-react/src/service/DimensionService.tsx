@@ -40,6 +40,7 @@ class DimensionService {
         const children: DimensionHierarchy[] = [];
 
         const childDimensions = dimensionHier.filter(dimension => dimension.parentId === parentId);
+        if (!childDimensions?.length) return children;
 
         childDimensions.forEach(dimension => {
             const dimensionNode: DimensionHierarchy = {

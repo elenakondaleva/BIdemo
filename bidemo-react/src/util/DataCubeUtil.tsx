@@ -18,12 +18,19 @@ const Table: React.FC<TableProps> = ({ data, columns, rows }) => {
         return currentColumns.map((column: any, index: number) => (
             <React.Fragment key={index}>
                 <th key={index}>
+                    <div
+                        className="expander"
+                        style={{
+                            display: "flex", alignItems: "normal"
+                        }}
+                    >
                     {column.dimensionName}{" "}
                     {column.children && (
-                        <button onClick={() => toggleColumn(index)}>
+                        <button style={{paddingLeft:5}} onClick={() => toggleColumn(index)}>
                             {viewedColumns.includes(index) ? "<" : ">"}
                         </button>
                     )}
+                    </div>
                 </th>
             </React.Fragment>
         ));
@@ -37,13 +44,13 @@ const Table: React.FC<TableProps> = ({ data, columns, rows }) => {
                         <div
                             className="expander"
                             style={{
-                                paddingLeft: `${row.level * 2}rem`
+                                display: "flex", alignItems: "normal", paddingLeft: `${row.level * 2}rem`
                             }}
                         >
                             <>
                                 {row.dimensionName}{" "}
                                 {row.children && (
-                                    <button onClick={() => toggleRow(index)}>
+                                    <button style={{paddingLeft: 5}} onClick={() => toggleRow(index)}>
                                         {viewedRows.includes(index) ? (
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
