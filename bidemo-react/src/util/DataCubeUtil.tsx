@@ -1,5 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {DimensionHierarchy, TableProps} from "../model/Dimension";
+import MoneyFormatted from "../component/ui/MoneyFormatted";
+import {ExpandIcon} from "../icons/ExpandIcon";
+import {CollapseIcon} from "../icons/CollapseIcon";
+import {CollapseHorizontIcon} from "../icons/CollapseHorizont";
 
 const Table: React.FC<TableProps> = ({ data, columns, rows }) => {
     const [currentColumns, setCurrentColumns] = useState(columns);
@@ -27,7 +31,7 @@ const Table: React.FC<TableProps> = ({ data, columns, rows }) => {
                     {column.dimensionName}{" "}
                     {column.children && (
                         <button style={{paddingLeft:5}} onClick={() => toggleColumn(index)}>
-                            {viewedColumns.includes(index) ? "<" : ">"}
+                            {viewedColumns.includes(index) ? <CollapseHorizontIcon/> : <CollapseIcon/>}
                         </button>
                     )}
                     </div>
@@ -50,38 +54,8 @@ const Table: React.FC<TableProps> = ({ data, columns, rows }) => {
                             <>
                                 {row.dimensionName}{" "}
                                 {row.children && (
-                                    <button style={{paddingLeft: 5}} onClick={() => toggleRow(index)}>
-                                        {viewedRows.includes(index) ? (
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                width="16"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth="1.5"
-                                                stroke="#33b4eb"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-                                                />
-                                            </svg>
-                                        ) : (
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                width="16"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth="1.5"
-                                                stroke="#33b4eb"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                                                />
-                                            </svg>
-                                        )}
+                                    <button style={{paddingLeft: 5}} onClick={() => toggleRow(index)} className="icon-button">
+                                        {viewedRows.includes(index) ? ( <ExpandIcon/> ) : ( <CollapseIcon/> )}
                                     </button>
                                 )}
                             </>
@@ -173,7 +147,9 @@ const Table: React.FC<TableProps> = ({ data, columns, rows }) => {
         const foundItems =
             data.filter(item => item.dimensionOneId === col.dimensionId && item.dimensionTwoId === row.dimensionId);
         if (foundItems.length > 0) {
-            return foundItems[0].rawData;
+            return <div className="text-right">
+                <MoneyFormatted amount={foundItems[0].rawData} />
+            </div>
         } else {
             return "-";
         }
@@ -183,8 +159,8 @@ const Table: React.FC<TableProps> = ({ data, columns, rows }) => {
         <table>
             <thead>
             <tr>
-                <th></th>
-                {renderColumns()}
+            <th></th>
+            {renderColumns()}
             </tr>
             </thead>
             <tbody>
