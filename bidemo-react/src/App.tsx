@@ -5,7 +5,7 @@ import DataCubeComponent from "./component/DataCubeComponent";
 
 function App() {
   return (
-      <div className="container">
+      <div className="App">
           {<DataCubeComponent/>}
       </div>
   );

@@ -23,3 +23,11 @@ export interface TableProps {
     columns: DimensionHierarchy[];
     rows: DimensionHierarchy[];
 }
+
+export interface DataCubeComponentProps {}
+
+export interface DataCubeComponentState {
+    datacube: DataCube[];
+    columns: any[];
+    rows: any[];
+}

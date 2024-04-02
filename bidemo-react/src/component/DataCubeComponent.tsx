@@ -1,16 +1,9 @@
 import React, {Component} from "react";
 import DataCubeService from "../service/DataCubeService";
 import DimensionService from "../service/DimensionService";
-import {DataCube} from "../model/Dimension"
-import Table from "../util/DataCubeUtil";
-
-interface DataCubeComponentProps {}
-
-interface DataCubeComponentState {
-    datacube: DataCube[];
-    columns: any[];
-    rows: any[];
-}
+import {DataCubeComponentProps, DataCubeComponentState} from "../model/Types"
+import Table from "./DataCubeTable";
+import DataCubeTable from "./DataCubeTable";
 
 class DataCubeComponent extends Component<DataCubeComponentProps, DataCubeComponentState> {
     constructor(props: DataCubeComponentProps) {
@@ -55,7 +48,7 @@ class DataCubeComponent extends Component<DataCubeComponentProps, DataCubeCompon
         return (
             <div>
                 <h2>Test Task JEDOX</h2>
-            <Table data={datacube} columns={columns} rows={rows}/>
+                <DataCubeTable data={datacube} columns={columns} rows={rows}/>
             </div>
         );
     }

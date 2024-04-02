@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DimensionService from '../service/DimensionService';
-import { Dimension } from '../model/Dimension';
+import { Dimension } from '../model/Types';
 
 interface DimensionComponentProps {}
 

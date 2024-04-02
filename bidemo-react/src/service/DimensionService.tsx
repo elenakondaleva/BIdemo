@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Dimension, DimensionHierarchy} from "../model/Dimension";
+import {Dimension, DimensionHierarchy} from "../model/Types";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
